@@ -27,8 +27,7 @@ class CarTest {
     @DisplayName("자동차는 한번에 1칸씩 앞으로 전진한다.")
     void success_car_move() {
         // given
-        BigInteger initialPosition = car.getPosition();
-        BigInteger expectedPosition = initialPosition.add(BigInteger.ONE);
+        int expectedPosition = 1;
 
         // when
         car.move();
