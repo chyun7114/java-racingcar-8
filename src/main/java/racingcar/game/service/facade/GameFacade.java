@@ -15,15 +15,15 @@ public class GameFacade {
     private final CarMoveService carMoveService = new CarMoveServiceImpl();
     private final CarWinnerService carWinnerService = new CarWinnerServiceImpl();
 
-    public void start(String carNamesInput, int tryCount) {
-        Cars cars = carGenerationService.generateCars(carNamesInput);
+    public Cars startGame(String carNamesInput) {
+        return carGenerationService.generateCars(carNamesInput);
+    }
 
-        System.out.println("\n실행 결과");
-
+    public void proceedGame(Cars cars, int tryCount) {
         carMoveService.moveCars(cars, tryCount);
+    }
 
-        List<String> winnerList = carWinnerService.getWinner(cars);
-
-        System.out.println("최종 우승자 : " + String.join(", ", winnerList));
+    public List<String> endGame(Cars cars) {
+        return carWinnerService.getWinner(cars);
     }
 }
