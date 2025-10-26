@@ -4,5 +4,5 @@ import racingcar.domain.Cars;
 
 public interface CarMoveService {
 
-    void moveCar(Cars cars, int tryCount);
+    void moveCars(Cars cars, int tryCount);
 }

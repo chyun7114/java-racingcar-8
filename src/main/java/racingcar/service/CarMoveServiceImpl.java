@@ -4,19 +4,21 @@ import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.infrastructure.generator.RandomNumberGenerator;
+import racingcar.view.OutputView;
 
 public class CarMoveServiceImpl implements CarMoveService {
 
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final OutputView outputView = new OutputView();
 
     @Override
-    public void moveCar(Cars cars, int tryCount) {
+    public void moveCars(Cars cars, int tryCount) {
+        List<Car> carList = cars.getCarList();
+
         for (int i = 0; i < tryCount; i++) {
-            List<Car> carList = cars.getCarList();
-
             moveCarByRandomNumber(carList);
-
             updateMaxDistance(cars);
+            printMoveResult(cars);
         }
     }
 
@@ -36,5 +38,10 @@ public class CarMoveServiceImpl implements CarMoveService {
                 .orElse(Integer.MIN_VALUE);
 
         cars.setMaxDistance(currentMax);
+    }
+
+    private void printMoveResult(Cars cars) {
+        outputView.printProcessOutput(cars);
+        System.out.println();
     }
 }
