@@ -22,4 +22,8 @@ public class OutputView {
     public void printWinners(List<String> winnerList) {
         System.out.println(FINAL_WINNER + String.join(", ", winnerList));
     }
+
+    public void printBlankLine() {
+        System.out.println();
+    }
 }

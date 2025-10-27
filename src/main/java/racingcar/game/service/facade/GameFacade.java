@@ -19,8 +19,8 @@ public class GameFacade {
         return carGenerationService.generateCars(carNamesInput);
     }
 
-    public void proceedGame(Cars cars, int tryCount) {
-        carMoveService.moveCars(cars, tryCount);
+    public void proceedOneTurn(Cars cars) {
+        carMoveService.moveCars(cars);
     }
 
     public List<String> endGame(Cars cars) {

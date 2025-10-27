@@ -4,22 +4,15 @@ import java.util.List;
 import racingcar.car.domain.Car;
 import racingcar.car.domain.Cars;
 import racingcar.car.infrastructure.generator.RandomNumberGenerator;
-import racingcar.game.view.OutputView;
 
 public class CarMoveServiceImpl implements CarMoveService {
 
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-    private final OutputView outputView = new OutputView();
 
     @Override
-    public void moveCars(Cars cars, int tryCount) {
-        List<Car> carList = cars.getCarList();
-
-        for (int i = 0; i < tryCount; i++) {
-            moveCarByRandomNumber(carList);
-            updateMaxDistance(cars);
-            printMoveResult(cars);
-        }
+    public void moveCars(Cars cars) {
+        moveCarByRandomNumber(cars.getCarList());
+        updateMaxDistance(cars);
     }
 
     private void moveCarByRandomNumber(List<Car> carList) {
@@ -38,10 +31,5 @@ public class CarMoveServiceImpl implements CarMoveService {
                 .orElse(Integer.MIN_VALUE);
 
         cars.setMaxDistance(currentMax);
-    }
-
-    private void printMoveResult(Cars cars) {
-        outputView.printProcessOutput(cars);
-        System.out.println();
     }
 }

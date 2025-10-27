@@ -19,9 +19,17 @@ public class GameController {
         int tryCount = Integer.parseInt(inputView.inputTryCount());
 
         outputView.printResultString();
-        gameFacade.proceedGame(cars, tryCount);
+        proceedGame(cars, tryCount);
 
         List<String> winnerList = gameFacade.endGame(cars);
         outputView.printWinners(winnerList);
+    }
+
+    private void proceedGame(Cars cars, int tryCount) {
+        for (int i = 0; i < tryCount; i++) {
+            gameFacade.proceedOneTurn(cars);
+            outputView.printProcessOutput(cars);
+            outputView.printBlankLine();
+        }
     }
 }
