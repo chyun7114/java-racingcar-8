@@ -8,9 +8,15 @@ import racingcar.game.view.OutputView;
 
 public class GameController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final GameFacade gameFacade = new GameFacade();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final GameFacade gameFacade;
+
+    public GameController(InputView inputView, OutputView outputView, GameFacade gameFacade) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.gameFacade = gameFacade;
+    }
 
     public void start() {
         String userInputCarName = inputView.inputCarName();

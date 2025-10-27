@@ -3,17 +3,24 @@ package racingcar.game.service.facade;
 import java.util.List;
 import racingcar.car.domain.Cars;
 import racingcar.car.service.CarGenerationService;
-import racingcar.car.service.CarGenerationServiceImpl;
 import racingcar.car.service.CarMoveService;
-import racingcar.car.service.CarMoveServiceImpl;
 import racingcar.car.service.CarWinnerService;
-import racingcar.car.service.CarWinnerServiceImpl;
 
 public class GameFacade {
 
-    private final CarGenerationService carGenerationService = new CarGenerationServiceImpl();
-    private final CarMoveService carMoveService = new CarMoveServiceImpl();
-    private final CarWinnerService carWinnerService = new CarWinnerServiceImpl();
+    private final CarGenerationService carGenerationService;
+    private final CarMoveService carMoveService;
+    private final CarWinnerService carWinnerService;
+
+    public GameFacade(
+            CarGenerationService carGenerationService,
+            CarMoveService carMoveService,
+            CarWinnerService carWinnerService
+    ) {
+        this.carGenerationService = carGenerationService;
+        this.carMoveService = carMoveService;
+        this.carWinnerService = carWinnerService;
+    }
 
     public Cars startGame(String carNamesInput) {
         return carGenerationService.generateCars(carNamesInput);
