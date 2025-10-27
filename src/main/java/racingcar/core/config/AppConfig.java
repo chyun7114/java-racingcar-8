@@ -1,5 +1,8 @@
 package racingcar.core.config;
 
+import racingcar.car.infrastructure.generator.RandomNumberGenerator;
+import racingcar.car.infrastructure.parser.CarNameParser;
+import racingcar.car.infrastructure.parser.CarNameParserImpl;
 import racingcar.car.service.CarGenerationService;
 import racingcar.car.service.CarGenerationServiceImpl;
 import racingcar.car.service.CarMoveService;
@@ -7,6 +10,7 @@ import racingcar.car.service.CarMoveServiceImpl;
 import racingcar.car.service.CarWinnerService;
 import racingcar.car.service.CarWinnerServiceImpl;
 import racingcar.game.controller.GameController;
+import racingcar.game.infrastructure.validator.UserInputValidator;
 import racingcar.game.service.facade.GameFacade;
 import racingcar.game.view.InputView;
 import racingcar.game.view.OutputView;
@@ -42,15 +46,26 @@ public class AppConfig {
     }
 
     public CarGenerationService carGenerationService() {
-        return new CarGenerationServiceImpl();
+        return new CarGenerationServiceImpl(carNameParser(), userInputValidator());
     }
 
     public CarMoveService carMoveService() {
-        return new CarMoveServiceImpl();
+        return new CarMoveServiceImpl(randomNumberGenerator());
     }
 
     public CarWinnerService carWinnerService() {
         return new CarWinnerServiceImpl();
     }
 
+    public UserInputValidator userInputValidator() {
+        return new UserInputValidator();
+    }
+
+    public RandomNumberGenerator randomNumberGenerator() {
+        return new RandomNumberGenerator();
+    }
+
+    public CarNameParser carNameParser() {
+        return new CarNameParserImpl();
+    }
 }

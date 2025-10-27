@@ -7,7 +7,11 @@ import racingcar.car.infrastructure.generator.RandomNumberGenerator;
 
 public class CarMoveServiceImpl implements CarMoveService {
 
-    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final RandomNumberGenerator randomNumberGenerator;
+
+    public CarMoveServiceImpl(RandomNumberGenerator randomNumberGenerator) {
+        this.randomNumberGenerator = randomNumberGenerator;
+    }
 
     @Override
     public void moveCars(Cars cars) {

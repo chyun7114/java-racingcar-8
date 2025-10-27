@@ -4,13 +4,20 @@ import java.util.List;
 import racingcar.car.domain.Car;
 import racingcar.car.domain.Cars;
 import racingcar.car.infrastructure.parser.CarNameParser;
-import racingcar.car.infrastructure.parser.CarNameParserImpl;
 import racingcar.game.infrastructure.validator.UserInputValidator;
 
 public class CarGenerationServiceImpl implements CarGenerationService {
 
-    private final CarNameParser carNameParser = new CarNameParserImpl();
-    private final UserInputValidator userInputValidator = new UserInputValidator();
+    private final CarNameParser carNameParser;
+    private final UserInputValidator userInputValidator;
+
+    public CarGenerationServiceImpl(
+            CarNameParser carNameParser,
+            UserInputValidator userInputValidator
+    ) {
+        this.carNameParser = carNameParser;
+        this.userInputValidator = userInputValidator;
+    }
 
     public Cars generateCars(String userInput) {
 
